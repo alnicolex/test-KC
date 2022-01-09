@@ -9,6 +9,8 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 /**
  * Selenium web driver overview class
  */
@@ -92,7 +94,34 @@ public class GeneralUtils {
             wait.until(ExpectedConditions.alertIsPresent());
         } catch (TimeoutException e) {
         }
+    }
 
+
+    /**
+     * Click on number of elements
+     * @param item
+     */
+    public void clickOnNumberElement(By locator, int item){
+        List<WebElement> products = findElements(locator);
+        int n = 1;
+        for (WebElement p : products)
+        {
+            System.out.println("item nro: " + n + "; product: " + p.getText());
+            if(n == item){
+                p.click();
+                break;
+            }
+            n = n + 1;
+        }
+    }
+
+    /**
+     * Return list of elements
+     * @param locator
+     * @return
+     */
+    public List<WebElement> findElements(By locator) {
+        return this.driver.findElements(locator);
     }
 
 }

@@ -9,8 +9,11 @@ import utils.GeneralUtils;
  */
 public class ResultPage {
 
-    public By btnOrder = By.id("a-autoid-0-announce");
     public By paginator = By.xpath("//ul[@class=\"a-pagination\"]");
+    //public By products = By.xpath("//div[@data-component-type=\"s-search-result\"]");
+    public  By products = By.xpath("//span[@class=\"a-size-medium a-color-base a-text-normal\"]");
+
+
 
     private WebDriver driver;
     private GeneralUtils utils;
@@ -31,7 +34,7 @@ public class ResultPage {
      * @return
      */
     public Boolean loadPage(){
-        return utils.existsElement(btnOrder);
+        return utils.existsElement(products);
     }
 
 
@@ -50,6 +53,17 @@ public class ResultPage {
     public ResultPage clickNumPage(String numPage) {
         utils.click(By.xpath("//ul[@class=\"a-pagination\"]/li/a[contains(text(), '" + numPage + "')]"));
         return new ResultPage(driver);
+    }
+
+
+    /**
+     * select product by item number
+     * @param item
+     * @return
+     */
+    public ProductPage selectProductByNumber(int item){
+        utils.clickOnNumberElement(products, item);
+        return new ProductPage(driver);
     }
 
 

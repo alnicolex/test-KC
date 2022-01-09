@@ -58,7 +58,7 @@ public class StepsPurchaseTest {
 
     @When("User clicks on the third item")
     public void clickOnItem() {
-
+        pageResult.selectProductByNumber(3);
     }
 
     @When("Product detail page is displayed")
