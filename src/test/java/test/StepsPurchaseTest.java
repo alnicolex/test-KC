@@ -91,9 +91,9 @@ public class StepsPurchaseTest {
         pageResult.goToPaginator();
     }
 
-    @When("User clicks on second page")
-    public void clickOnPageNumber() {
-        pageResult = pageResult.clickNumPage("2");
+    @When("User clicks on (.*) page")
+    public void clickOnPageNumber(String pageNumber) {
+        pageResult = pageResult.clickNumPage(pageNumber);
     }
 
     @When("Results second page is displayed")
@@ -101,9 +101,9 @@ public class StepsPurchaseTest {
         Assert.assertTrue(pageResult.loadPage(), "Error Second page not available");
     }
 
-    @When("User clicks on the third item")
-    public void clickOnItem() {
-        pageProduct = pageResult.selectProductByNumber(3);
+    @When("User clicks on the (.*) item")
+    public void clickOnItem(int itemNumber) {
+        pageProduct = pageResult.selectProductByNumber(itemNumber);
     }
 
     @When("Product detail page is displayed")
