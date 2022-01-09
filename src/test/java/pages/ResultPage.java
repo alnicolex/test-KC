@@ -10,6 +10,7 @@ import utils.GeneralUtils;
 public class ResultPage {
 
     public By btnOrder = By.id("a-autoid-0-announce");
+    public By paginator = By.xpath("//ul[@class=\"a-pagination\"]");
 
     private WebDriver driver;
     private GeneralUtils utils;
@@ -32,5 +33,24 @@ public class ResultPage {
     public Boolean loadPage(){
         return utils.existsElement(btnOrder);
     }
+
+
+    /**
+     * Go to the paginator
+     */
+    public void goToPaginator(){
+        utils.moveToElement(paginator);
+    }
+
+    /**
+     * Click on page number
+     * @param numPage
+     * @return
+     */
+    public ResultPage clickNumPage(String numPage) {
+        utils.click(By.xpath("//ul[@class=\"a-pagination\"]/li/a[contains(text(), '" + numPage + "')]"));
+        return new ResultPage(driver);
+    }
+
 
 }

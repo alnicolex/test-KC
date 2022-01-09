@@ -39,6 +39,7 @@ public class HomePage {
      * @return
      */
     public ResultPage searchItem(String item){
+        utils.maximize();
         utils.input(txtSearch, item);
         utils.click(btnSearch);
         return new ResultPage(driver);
