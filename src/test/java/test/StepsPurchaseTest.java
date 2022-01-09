@@ -7,6 +7,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import pages.HomePage;
@@ -25,15 +27,43 @@ public class StepsPurchaseTest {
 
 
     @Before
+    /**
+     *  Instance Webdriver
+     */
     public void starTest(){
+
+        // Chrome
         try {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-        } catch (NoClassDefFoundError e) {
+            pageHome = new HomePage(driver);
+            return;
+        } catch (NoClassDefFoundError e) { }
+
+        // Safari
+        try {
             WebDriverManager.safaridriver().setup();
             driver = new SafariDriver();
-        }
-        pageHome = new HomePage(driver);
+            pageHome = new HomePage(driver);
+            return;
+        } catch (NoClassDefFoundError e) { }
+
+        // Mozilla
+        try {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+            pageHome = new HomePage(driver);
+            return;
+        } catch (NoClassDefFoundError e) { }
+
+        // Edge
+        try {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+            pageHome = new HomePage(driver);
+            return;
+        } catch (NoClassDefFoundError e) { }
+
     }
 
     @Given("The user accesses amazon.com page")
@@ -41,14 +71,14 @@ public class StepsPurchaseTest {
         driver.get("https://www.amazon.com/");
     }
 
-    @When("Page appears")
-    public void homePage(){
+    @When("The available page appears")
+    public void homePageAvailable(){
         Assert.assertTrue(pageHome.loadPage(), "Error home page not available");
     }
 
-    @When("User clicks search option and type Alexa")
-    public void theUserClickOnSearchOption(){
-        pageResult = pageHome.searchItem("Alexa");
+    @When("User clicks search option and type (.*)")
+    public void theUserClickOnSearchOption(String product) {
+        pageResult = pageHome.searchItem(product);
     }
 
     @When("Results page is displayed")
