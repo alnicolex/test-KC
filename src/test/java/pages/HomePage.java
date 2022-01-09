@@ -30,7 +30,7 @@ public class HomePage {
      * @return
      */
     public Boolean loadPage(){
-        return utils.existsElement(imgHome);
+        return utils.isDisplayed(imgHome);
     }
 
     /**

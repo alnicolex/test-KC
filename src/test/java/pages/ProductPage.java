@@ -11,6 +11,7 @@ import utils.GeneralUtils;
 public class ProductPage {
 
     public By prdTitle = By.id("titleSection");
+    public By btnAddCart = By.id("add-to-cart-button");
 
     private WebDriver driver;
     private GeneralUtils utils;
@@ -30,7 +31,24 @@ public class ProductPage {
      * @return
      */
     public Boolean loadPage(){
-        return utils.existsElement(prdTitle);
+        return utils.isDisplayed(prdTitle);
     }
 
+
+    /**
+     * Check availability product
+     * @return
+     */
+    public Boolean checkAvailability(){
+        return utils.isDisplayed(btnAddCart);
+    }
+
+    /**
+     * Check availability product
+     * @return
+     */
+    public void addToCart(){
+        utils.click(btnAddCart);
+
+    }
 }

@@ -9,4 +9,4 @@ Feature: Purchase
     And Results second page is displayed
     And User clicks on the third item
     And Product detail page is displayed
-    Then Validate if the product is available
+    Then Validate if the product is available and add to cart

@@ -9,4 +9,5 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(features = "src/test/java/features/purchase.feature")
 public class RunTest extends AbstractTestNGCucumberTests{
 
+
 }

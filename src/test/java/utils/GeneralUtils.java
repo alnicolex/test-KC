@@ -1,11 +1,6 @@
 package utils;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,11 +28,13 @@ public class GeneralUtils {
      * @param locator
      * @return
      */
-    public Boolean existsElement(By locator){
-        WebDriverWait waitClick = new WebDriverWait(this.driver, 10);
-        waitClick.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
-        waitClick.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        return this.driver.findElement(locator).isDisplayed();
+    public Boolean isDisplayed(By locator){
+        try {
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+            return this.driver.findElement(locator).isDisplayed();
+        } catch (TimeoutException var) {
+            return false;
+        }
     }
 
     /**
@@ -57,12 +54,10 @@ public class GeneralUtils {
      * @param locator
      */
     public void click(By locator) {
-        WebDriverWait waitClick = new WebDriverWait(this.driver, 10);
-        waitClick.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
-        waitClick.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        waitClick.until(ExpectedConditions.elementToBeClickable(locator));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         this.driver.findElement(locator).click();
-
         waitForSeconds();
     }
 

@@ -34,7 +34,7 @@ public class ResultPage {
      * @return
      */
     public Boolean loadPage(){
-        return utils.existsElement(products);
+        return utils.isDisplayed(products);
     }
 
 
