@@ -1,21 +1,21 @@
 package test;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import pages.HomePage;
 import pages.ProductPage;
 import pages.ResultPage;
 
-import java.math.RoundingMode;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class StepsPurchaseTest {
-
 
     private WebDriver driver;
     private HomePage pageHome;
@@ -23,15 +23,16 @@ public class StepsPurchaseTest {
     private ProductPage pageProduct;
 
 
+    @Before
+    public void starTest(){
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        pageHome = new HomePage(driver);
+    }
+
     @Given("The user accesses amazon.com page")
     public void theUserIsInHomePage(){
-        if (driver == null) {
-            System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-            driver = new ChromeDriver();
-            pageHome = new HomePage(driver);
-            driver.get("https://www.amazon.com/");
-
-        }
+        driver.get("https://www.amazon.com/");
     }
 
     @When("Page appears")
@@ -79,6 +80,10 @@ public class StepsPurchaseTest {
     public void validateProduct() {
         Assert.assertTrue(pageProduct.checkAvailability(), "Error Product not available");
         pageProduct.addToCart();
+    }
+
+    @After
+    public void endTest(){
         driver.close();
     }
 
