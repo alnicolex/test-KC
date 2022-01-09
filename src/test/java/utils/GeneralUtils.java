@@ -101,7 +101,6 @@ public class GeneralUtils {
         int n = 1;
         for (WebElement p : products)
         {
-            System.out.println("item nro: " + n + "; product: " + p.getText());
             if(n == item){
                 p.click();
                 break;

@@ -27,7 +27,7 @@ public class HomePage {
 
     /**
      * Check page
-     * @return
+     * @return check
      */
     public Boolean loadPage(){
         return utils.isDisplayed(imgHome);
@@ -36,7 +36,7 @@ public class HomePage {
     /**
      * Search for item and return search result
      * @param item
-     * @return
+     * @return pageObject
      */
     public ResultPage searchItem(String item){
         utils.maximize();

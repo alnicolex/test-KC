@@ -16,7 +16,6 @@ public class ProductPage {
     private WebDriver driver;
     private GeneralUtils utils;
 
-
     /**
      * Constructor
      * @param driver
@@ -28,7 +27,7 @@ public class ProductPage {
 
     /**
      * Check page
-     * @return
+     * @return check
      */
     public Boolean loadPage(){
         return utils.isDisplayed(prdTitle);
@@ -37,15 +36,14 @@ public class ProductPage {
 
     /**
      * Check availability product
-     * @return
+     * @return check
      */
     public Boolean checkAvailability(){
         return utils.isDisplayed(btnAddCart);
     }
 
     /**
-     * Check availability product
-     * @return
+     * Add to the cart
      */
     public void addToCart(){
         utils.click(btnAddCart);

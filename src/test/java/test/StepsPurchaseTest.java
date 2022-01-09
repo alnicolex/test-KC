@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import pages.HomePage;
 import pages.ProductPage;
@@ -25,8 +26,13 @@ public class StepsPurchaseTest {
 
     @Before
     public void starTest(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        try {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } catch (NoClassDefFoundError e) {
+            WebDriverManager.safaridriver().setup();
+            driver = new SafariDriver();
+        }
         pageHome = new HomePage(driver);
     }
 

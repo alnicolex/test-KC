@@ -10,10 +10,7 @@ import utils.GeneralUtils;
 public class ResultPage {
 
     public By paginator = By.xpath("//ul[@class=\"a-pagination\"]");
-    //public By products = By.xpath("//div[@data-component-type=\"s-search-result\"]");
     public  By products = By.xpath("//span[@class=\"a-size-medium a-color-base a-text-normal\"]");
-
-
 
     private WebDriver driver;
     private GeneralUtils utils;
@@ -28,7 +25,6 @@ public class ResultPage {
         utils = new GeneralUtils(this.driver);
     }
 
-
     /**
      * Check page
      * @return
@@ -36,7 +32,6 @@ public class ResultPage {
     public Boolean loadPage(){
         return utils.isDisplayed(products);
     }
-
 
     /**
      * Go to the paginator
@@ -48,18 +43,17 @@ public class ResultPage {
     /**
      * Click on page number
      * @param numPage
-     * @return
+     * @return PageObject
      */
     public ResultPage clickNumPage(String numPage) {
         utils.click(By.xpath("//ul[@class=\"a-pagination\"]/li/a[contains(text(), '" + numPage + "')]"));
         return new ResultPage(driver);
     }
 
-
     /**
      * select product by item number
      * @param item
-     * @return
+     * @return PageObject
      */
     public ProductPage selectProductByNumber(int item){
         utils.clickOnNumberElement(products, item);
